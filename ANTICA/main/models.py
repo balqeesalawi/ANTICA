@@ -20,7 +20,7 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20)
     image = models.ImageField(upload_to='main/static/uploads/', default="")
     bio = models.TextField(max_length=250)
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=1)
 
     def __str__(self):
         return self.user.username

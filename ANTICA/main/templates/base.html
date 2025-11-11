@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANTICA</title>
-</head>
-<body>
-<header>
-  <nav>
-    <ul>
-      <li>
-        <a href="/">ANTICA</a>
-      </li>
-    </ul>
-    <ul>
-      <li><a href="{% url 'about' %}">About</a></li>
-    </ul>
-  </nav>
-</header>
-<main>
-  {% block content %}
-  {% endblock %}
-</main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANTICA</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">ANTICA</a>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="{% url 'about' %}">About</a></li>
 
-<footer>
-  <div>
-    All Rights Reserved, &copy; 2025 ANTICA &nbsp;
-  </div>
-</footer>
-</body>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'users-profile' %}">Profile</a></li>
+
+          <li>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+            </form>
+          </li>
+
+          {% else %}
+          <li><a href="{% url 'login' %}">Log In</a></li>
+
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    <main>{% block content %} {% endblock %}</main>
+
+    <footer>
+      <div>All Rights Reserved, &copy; 2025 ANTICA &nbsp;</div>
+    </footer>
+  </body>
 </html>
