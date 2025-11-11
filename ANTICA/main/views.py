@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Auction
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 # Create your views here.
 
@@ -32,3 +35,18 @@ def signup(request):
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
+
+def auctions_index(request):
+    auctions = Auction.objects.all
+    return render(request, 'auctions/index.html', {'auctions': auctions})
+
+class AuctionDetail(DetailView):
+    model = Auction
+
+class AuctionCreate(LoginRequiredMixin,CreateView):
+    model = Auction
+    fields = ['name', 'description', 'starting_price', 'current_price','image', 'category']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

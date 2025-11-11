@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+      <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
+<h1>{{ auction.name }}</h1>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for auction in auctions %}
+<a href="{% url 'auctions_detail' auction.id %}">
+<div>
+  {% load static %}
+
+      <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
+  <h3>
+    {{ auction.name }}
+  </h3>
+  <p>Current Price: {{ auction.current_price }} </p>
+</div>
+</a>
+
+{% endfor %}
+<a href="{% url 'auctions_create' %}">Add Auction + </a>
+{% endblock %}

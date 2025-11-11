@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 
@@ -26,17 +27,21 @@ class Profile(models.Model):
         return self.user.username
 
 class Auction(models.Model):
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     description = models.TextField(max_length=250)
     starting_price = models.DecimalField(max_digits=10, decimal_places=2)
     current_price = models.DecimalField(max_digits=10, decimal_places=2)
     is_active = models.BooleanField(default=True)
-    end_time = models.DateTimeField()
+    image = models.ImageField(upload_to='main/static/uploads/', default="")
     category = models.CharField(max_length=12, choices=CATEGORY, default=CATEGORY[0][0])
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("auctions_detail", kwargs={"pk": self.id})
+
 
 
 class Bid(models.Model):
@@ -47,3 +52,5 @@ class Bid(models.Model):
 
     def __str__(self):
         return f"{self.auction.name} for {self.bidder.username}"
+
+
