@@ -5,4 +5,6 @@
 
       <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <h1>{{ auction.name }}</h1>
+<a href="{% url 'auctions_update' auction.id %}">Place a bid</a>
+<a href="{% url 'auctions_delete' auction.id %}">Delete</a>
 {% endblock %}
