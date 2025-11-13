@@ -30,10 +30,11 @@ class Auction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     description = models.TextField(max_length=250)
-    starting_price = models.DecimalField(max_digits=10, decimal_places=2)
-    current_price = models.DecimalField(max_digits=10, decimal_places=2)
+    starting_price = models.DecimalField(max_digits=10, decimal_places=3)
+    current_price = models.DecimalField(max_digits=10, decimal_places=3)
     is_active = models.BooleanField(default=True)
     image = models.ImageField(upload_to='main/static/uploads/', default="")
+    date = models.DateField()
     category = models.CharField(max_length=12, choices=CATEGORY, default=CATEGORY[0][0])
 
     def __str__(self):

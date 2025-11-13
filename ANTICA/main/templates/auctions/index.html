@@ -2,17 +2,24 @@
 
 {% block content %}
 {% for auction in auctions %}
-<a href="{% url 'auctions_detail' auction.id %}">
-<div>
+
+<div class="card">
+  {% if auction.is_active == False %}
+  <p>ENDED AUCTION</p>
+  {% else %}
+  <P>ONGOING AUCTION</P>
+  {% endif %}
+
   {% load static %}
 
       <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
   <h3>
     {{ auction.name }}
   </h3>
-  <p>Current Price: {{ auction.current_price }} </p>
+  <p>{{ auction.description }}</p>
+  <p>Current Bid: {{ auction.current_price }} </p>
+  <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
 </div>
-</a>
 
 {% endfor %}
 <a href="{% url 'auctions_create' %}">Add Auction + </a>

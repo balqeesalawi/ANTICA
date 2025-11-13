@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load static %}
 
-<img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
+
 <h1>{{ auction.name }}</h1>
-<p>{{ auction.current_price }}</p>
+<p>{{ auction.date }}</p>
+{% load static %}
+<img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
+<p>Description: {{ auction.description }}</p>
+<p>Starting Price: {{ auction.starting_price }} BHD</p>
+<p>Current Bid: {{ auction.current_price }} BHD</p>
+<p>Category: {{ auction.category }}</p>
+
 
 {% if auction.user == request.user %}
 {% if message %}

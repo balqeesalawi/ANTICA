@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Auction, Bid
+from .models import Auction, Bid, Profile
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import BidForm
@@ -40,6 +40,8 @@ def profile(request):
     return render(request, "users/profile.html")
 
 
+
+
 def auctions_index(request):
     auctions = Auction.objects.all
     return render(request, "auctions/index.html", {"auctions": auctions})
@@ -50,14 +52,11 @@ def auctions_detail(request, auction_id):
     bids = Bid.objects.filter(auction= auction)
 
 
-
-
-
     if auction.is_active == False:
         for bid in bids:
          if bid.amount == auction.current_price:
             winner = bid.bidder
-            
+
             message = f"THE WINNER FOR THIS AUCTION IS { winner }"
             return render(request, 'auctions/detail.html', { 'auction': auction, 'message': message, 'bids' : bids, 'winner': winner})
 
