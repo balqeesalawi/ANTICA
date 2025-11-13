@@ -13,6 +13,8 @@ urlpatterns = [
     path('auctions/<int:pk>/update/', views.AuctionUpdate.as_view(), name='auctions_update'),
     path('auctions/<int:pk>/', views.AuctionDelete.as_view(), name='auctions_delete'),
 
+    path('auctions/<int:auction_id>/add_bid', views.add_bid, name='bids_create'),
+
     path('accounts/signup/', views.signup, name='signup')
 ]
 

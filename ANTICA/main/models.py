@@ -53,4 +53,7 @@ class Bid(models.Model):
     def __str__(self):
         return f"{self.auction.name} for {self.bidder.username}"
 
+    def get_absolute_url(self):
+        return reverse("auctions_detail", kwargs={"pk": self.auction.id})
+
 

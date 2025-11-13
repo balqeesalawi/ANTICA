@@ -3,11 +3,13 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Auction
+from .models import Auction, Bid
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from .forms import BidForm
 
 # Create your views here.
+
 
 def home(request):
     return render(request, "home.html")
@@ -16,36 +18,52 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 
+
 def signup(request):
-    error_message =''
-    if request.method == 'POST':
+    error_message = ""
+    if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect("home")
         else:
-            error_message = 'Invalid Sign Up - Try Again'
+            error_message = "Invalid Sign Up - Try Again"
 
     form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, 'registration/signup.html', context)
+    context = {"form": form, "error_message": error_message}
+    return render(request, "registration/signup.html", context)
 
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    return render(request, "users/profile.html")
+
 
 def auctions_index(request):
     auctions = Auction.objects.all
-    return render(request, 'auctions/index.html', {'auctions': auctions})
+    return render(request, "auctions/index.html", {"auctions": auctions})
+
 
 class AuctionDetail(DetailView):
     model = Auction
 
-class AuctionCreate(LoginRequiredMixin,CreateView):
+    def winner(self, bid_id):
+        bid = Bid.objects.get(id=bid_id)
+        max_amount = max(bid.amount)
+        
+
+
+class AuctionCreate(LoginRequiredMixin, CreateView):
     model = Auction
-    fields = ['name', 'description', 'starting_price', 'current_price','image', 'category']
+    fields = [
+        "name",
+        "description",
+        "starting_price",
+        "current_price",
+        "image",
+        "category",
+    ]
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -54,8 +72,50 @@ class AuctionCreate(LoginRequiredMixin,CreateView):
 
 class AuctionUpdate(LoginRequiredMixin, UpdateView):
     model = Auction
-    fields = ['current_price']
+    fields = ["is_active"]
+
 
 class AuctionDelete(LoginRequiredMixin, DeleteView):
     model = Auction
-    success_url = '/auctions/'
+    success_url = "/auctions/"
+
+
+def add_bid(request, auction_id):
+    auction = Auction.objects.get(id=auction_id)
+    if request.method == "POST":
+        form = BidForm(request.POST)
+
+        if form.is_valid():
+            new_bid = form.save(commit=False)
+            new_bid.auction_id = auction_id
+            new_bid.bidder = request.user
+
+            error_message = ""
+            if new_bid.amount <= auction.current_price:
+                error_message = (
+                    "The amount of the bid should be higher than the current price"
+                )
+                context = {
+                    "form": form,
+                    "error_message": error_message,
+                    "auction": auction,
+                }
+                return render(request, "main/auction_detail.html", context)
+
+            if new_bid.amount < auction.current_price + 5:
+                error_message = "The can't bid with less than 5 BD "
+                context = {
+                    "form": form,
+                    "error_message": error_message,
+                    "auction": auction,
+                }
+                return render(request, "main/auction_detail.html", context)
+
+
+            auction.current_price = new_bid.amount
+            auction.save()
+            new_bid.save()
+    context = {"form": form, "auction": auction}
+    return render(request, "main/auction_detail.html", context)
+
+

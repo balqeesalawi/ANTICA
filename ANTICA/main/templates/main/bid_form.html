@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% if error_message %}
+<p class="red-text">
+  {{ error_message }}
+</p>
+{% endif %}
+
+<div>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="number" name="amount" placeholder="{{auction.user.username}}" />
+    <button type="submit">Place Bid</button>
+  </form>
+
+
+</div>
+{% endblock %}
