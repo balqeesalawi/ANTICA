@@ -40,7 +40,7 @@ class Auction(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("auctions_detail", kwargs={"pk": self.id})
+        return reverse("auctions_detail", kwargs={"auction_id": self.id})
 
 
 
@@ -54,6 +54,6 @@ class Bid(models.Model):
         return f"{self.auction.name} for {self.bidder.username}"
 
     def get_absolute_url(self):
-        return reverse("auctions_detail", kwargs={"pk": self.auction.id})
+        return reverse("auctions_detail", kwargs={"auction_id": self.auction.id})
 
 

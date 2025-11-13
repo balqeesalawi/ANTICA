@@ -45,13 +45,24 @@ def auctions_index(request):
     return render(request, "auctions/index.html", {"auctions": auctions})
 
 
-class AuctionDetail(DetailView):
-    model = Auction
+def auctions_detail(request, auction_id):
+    auction = Auction.objects.get(id=auction_id)
+    bids = Bid.objects.filter(auction= auction)
 
-    def winner(self, bid_id):
-        bid = Bid.objects.get(id=bid_id)
-        max_amount = max(bid.amount)
-        
+
+
+
+
+    if auction.is_active == False:
+        for bid in bids:
+         if bid.amount == auction.current_price:
+            winner = bid.bidder
+            
+            message = f"THE WINNER FOR THIS AUCTION IS { winner }"
+            return render(request, 'auctions/detail.html', { 'auction': auction, 'message': message, 'bids' : bids, 'winner': winner})
+
+    return render(request, 'auctions/detail.html', {'auction': auction, 'bids' : bids})
+
 
 
 class AuctionCreate(LoginRequiredMixin, CreateView):
@@ -100,7 +111,7 @@ def add_bid(request, auction_id):
                     "error_message": error_message,
                     "auction": auction,
                 }
-                return render(request, "main/auction_detail.html", context)
+                return render(request, "auctions/detail.html", context)
 
             if new_bid.amount < auction.current_price + 5:
                 error_message = "The can't bid with less than 5 BD "
@@ -109,13 +120,13 @@ def add_bid(request, auction_id):
                     "error_message": error_message,
                     "auction": auction,
                 }
-                return render(request, "main/auction_detail.html", context)
+                return render(request, "auctions/detail.html", context)
 
 
             auction.current_price = new_bid.amount
             auction.save()
             new_bid.save()
     context = {"form": form, "auction": auction}
-    return render(request, "main/auction_detail.html", context)
+    return render(request, "auctions/detail.html", context)
 
 

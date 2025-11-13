@@ -3,10 +3,17 @@
 {% block content %}
 {% load static %}
 
-      <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
+<img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <h1>{{ auction.name }}</h1>
 <p>{{ auction.current_price }}</p>
+
 {% if auction.user == request.user %}
+{% if message %}
+  <p class="red-text">
+   {{ message }}
+  </p>
+ {% endif %}
+
 <a href="{% url 'auctions_delete' auction.id %}">Delete</a>
 <a href="{% url 'auctions_update' auction.id %}">Stop Auction</a>
 {% else %}
@@ -26,14 +33,19 @@
     <button type="submit">Place Bid</button>
   </form>
 
-</div>
+
 {% else %}
+{% if winner  %}
+<p>You Are The Winner of this Auction!</p>
+{% else %}
+
 {% if message %}
   <p class="red-text">
    {{ message }}
   </p>
  {% endif %}
- 
+ {% endif %}
+
 <button disabled>Auction Ended</button>
 {% endif %}
 {% endif %}
