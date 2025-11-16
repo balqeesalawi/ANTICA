@@ -107,3 +107,30 @@ nav button:hover {
     gap: 1rem;
   }
 }
+
+.box-music {
+    position: fixed;
+    right: 20px;
+    bottom: 20px; /* or top: 20px; if you want it at the top */
+    z-index: 999;
+}
+
+#playMusicBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+#playMusicBtn img {
+    display: block;
+    transition: 0.3s ease;
+}
+
+#playMusicBtn img:hover {
+    transform: scale(1.05);
+}
+
+#playMusicBtn:active img {
+    transform: scale(0.9);
+}

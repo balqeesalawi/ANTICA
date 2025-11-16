@@ -42,6 +42,14 @@
       </nav>
     </header>
 
+    <div class="box-music">
+    <button id="playMusicBtn">
+      <img
+           src="{% static 'images/box.gif' %}"
+           alt="play music" width="100px" height="100px">
+    </button>
+    <audio id="backgroundMusic" src="{% static 'audio/bg.mp3' %}" loop></audio>
+    </div>
 
 
 
@@ -60,7 +68,27 @@
       //   light.style.left = e.pageX + "px";
       //   light.style.top = e.pageY + "px";
       // });
+    document.addEventListener('DOMContentLoaded', () => {
+    const playBtn = document.getElementById('playMusicBtn');
+    const music = document.getElementById('backgroundMusic');
 
+    // Check if music was playing before
+    let isPlaying = localStorage.getItem('musicPlaying') === 'true';
+    if (isPlaying) {
+        music.play();
+    }
+
+    playBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+            music.play();
+            isPlaying = true;
+        } else {
+            music.pause();
+            isPlaying = false;
+        }
+        localStorage.setItem('musicPlaying', isPlaying);
+    });
+});
 
     </script>
   </body>
