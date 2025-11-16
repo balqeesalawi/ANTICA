@@ -134,8 +134,18 @@ nav button:hover {
   transform: scale(0.9);
 }
 
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  max-width: 1200px; /* keeps rows tidy */
+  margin: 0 auto;
+}
+
 .card {
-  width: 260px;
+  flex: 1 1 260px;  /* makes them fit 3 per row */
+  max-width: 300px;
   background: rgb(26, 26, 26);
   backdrop-filter: blur(6px);
   border-radius: 14px;
@@ -154,33 +164,32 @@ nav button:hover {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
 }
 
-/* Card title */
+/* Labels */
+.card p:first-child {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  background: #8b5e3c;
+  padding: 4px 10px;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Title */
 .card h3 {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
 }
 
-/* Description text */
+/* Description */
 .card p {
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
-/* Ongoing / Ended labels */
-.card p:first-child {
-  font-family: "Cinzel", serif;
-  font-weight: 700;
-  background: #f4dba1;
-  color: #2a2623;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-block;
-  font-size: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-/* Card images */
+/* Images */
 .card img {
   width: 100%;
   height: 250px;
@@ -190,13 +199,13 @@ nav button:hover {
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
 }
 
-/* Place Bid button */
+/* Buttons */
 .card a {
   display: inline-block;
-  background: #f4dba1;
-  color: #2a2623;
+  background: #8b5e3c;
+  color: #ebdfc7;
   padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  border-radius: 3px;
   margin-top: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -206,6 +215,5 @@ nav button:hover {
 
 /* Button hover */
 .card a:hover {
-  background: #e0c097;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }

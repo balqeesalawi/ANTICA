@@ -5,8 +5,9 @@
 
 <h2>Today's Auctions</h2>
 {% if auction.auction_for_today %}
-{% for auction in auctions %}
+<div class="card-container">
 
+{% for auction in auctions %}
 
 <div class="card">
   {% if auction.is_active == False %}
@@ -22,17 +23,18 @@
     {{ auction.name }}
   </h3>
   <p>{{ auction.description }}</p>
-  <p>Current Bid: {{ auction.current_price }} </p>
+  <p>Current Bid: {{ auction.current_price }} BHD</p>
   <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
 </div>
 {% endfor %}
+</div>
 {% else %}
-<h3>No Auctions Today</h3>
+<p>No Auctions From Today</p>
 {% endif %}
 
 
 <h2>All Auctions</h2>
-
+<div class="card-container">
 {% for auction in auctions %}
 <div class="card">
   {% if auction.is_active == False %}
@@ -48,9 +50,10 @@
     {{ auction.name }}
   </h3>
   <p>{{ auction.description }}</p>
-  <p>Current Bid: {{ auction.current_price }} </p>
+  <p>Current Bid: {{ auction.current_price }} BHD</p>
   <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
 </div>
 {% endfor %}
+</div>
 <a href="{% url 'auctions_create' %}">Add Auction + </a>
 {% endblock %}
