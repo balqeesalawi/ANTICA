@@ -10,7 +10,7 @@
 <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <p>Description: {{ auction.description }}</p>
 <p>Starting Price: {{ auction.starting_price }} BHD</p>
-<p>Current Bid: {{ auction.current_price }} BHD</p>
+<p>Current Bid: <span id="currentBid">{{ auction.current_price }}</span> BHD</p>
 <p>Category: {{ auction.category }}</p>
 
 
@@ -57,4 +57,6 @@
 <button disabled>Auction Ended</button>
 {% endif %}
 {% endif %}
+
 {% endblock %}
+
