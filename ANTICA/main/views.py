@@ -40,6 +40,7 @@ def profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     return render(request, "users/profile.html", {'profile' : profile})
 
+
 class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['image', 'email', 'phone', 'bio']
@@ -51,7 +52,7 @@ def auctions_index(request):
     auctions = Auction.objects.all
     return render(request, "auctions/index.html", {"auctions": auctions})
 
-
+@login_required
 def auctions_detail(request, auction_id):
     auction = Auction.objects.get(id=auction_id)
     bids = Bid.objects.filter(auction= auction)
@@ -96,6 +97,7 @@ class AuctionDelete(LoginRequiredMixin, DeleteView):
     success_url = "/auctions/"
 
 
+@login_required
 def add_bid(request, auction_id):
     auction = Auction.objects.get(id=auction_id)
     if request.method == "POST":
