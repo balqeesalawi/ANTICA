@@ -5,6 +5,7 @@
 
 <h1>{{ auction.name }}</h1>
 <p>{{ auction.date }}</p>
+<p>Seller: {{ auction.user.username }}</p>
 {% load static %}
 <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <p>Description: {{ auction.description }}</p>
@@ -23,6 +24,7 @@
 <a href="{% url 'auctions_delete' auction.id %}">Delete</a>
 <a href="{% url 'auctions_update' auction.id %}">Stop Auction</a>
 {% else %}
+
 {% if auction.is_active == True %}
  {% if error_message %}
   <p class="red-text">

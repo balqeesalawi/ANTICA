@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import date
+
 
 # Create your models here.
 
@@ -26,6 +28,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_absolute_url(self):
+        return reverse("users-profile", kwargs={"profile_id": self.id})
+
 class Auction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
@@ -42,6 +47,9 @@ class Auction(models.Model):
 
     def get_absolute_url(self):
         return reverse("auctions_detail", kwargs={"auction_id": self.id})
+
+    def auction_for_today(self):
+        return self.date == date.today()
 
 
 

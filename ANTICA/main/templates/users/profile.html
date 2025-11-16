@@ -3,7 +3,12 @@
 {% block content %}
 <form action="" method="post">
   {% csrf_token %}
-  <p></p>
-  <input type="submit" value="Sign Up">
+  {% load static %}
+  <img width="250px" height="250px" src={% static profile.image|cut:'main/static/' %} />
+  <p>Username: {{ user.username }}</p>
+  <p>Email: {{ profile.email }}</p>
+  <p>Phone Number: {{ profile.phone }}</p>
+  <p>Bio: {{ profile.bio }}</p>
 </form>
+<a href="{% url 'profile_update' profile.id %}"> Edit Profile</a>
 {% endblock %}

@@ -36,8 +36,13 @@ def signup(request):
 
 
 @login_required
-def profile(request):
-    return render(request, "users/profile.html")
+def profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    return render(request, "users/profile.html", {'profile' : profile})
+
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = Profile
+    fields = ['image', 'email', 'phone', 'bio']
 
 
 
@@ -69,6 +74,7 @@ class AuctionCreate(LoginRequiredMixin, CreateView):
     fields = [
         "name",
         "description",
+        'date',
         "starting_price",
         "current_price",
         "image",

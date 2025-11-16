@@ -1,46 +1,67 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ANTICA</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
   </head>
+
   <body>
+    <!-- الضوء فقط، مستقل -->
+    <div class="cursor-light"></div>
+
     <header>
       <nav>
         <ul>
-          <li>
-            <a href="/">ANTICA</a>
-          </li>
-        </ul>
+  <li><a href="/" class="logo-link">ANTICA</a></li>
+</ul>
+
+
         <ul>
           <li><a href="{% url 'about' %}">About</a></li>
-
           <li><a href="{% url 'index' %}">Auctions</a></li>
 
           {% if user.is_authenticated %}
-          <li><a href="{% url 'users-profile' %}">Profile</a></li>
-
-          <li>
-            <form action="{% url 'logout' %}" method="post">
-              {% csrf_token %}
-              <button type="submit">Logout</button>
-            </form>
-          </li>
-
+            <li><a href="{% url 'users-profile' request.user.profile.id %}">Profile</a></li>
+            <li>
+              <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+              </form>
+            </li>
           {% else %}
-          <li><a href="{% url 'login' %}">Log In</a></li>
-
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
           {% endif %}
         </ul>
       </nav>
     </header>
-    <main>{% block content %} {% endblock %}</main>
+
+
+
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
 
     <footer>
       <div>All Rights Reserved, &copy; 2025 ANTICA &nbsp;</div>
     </footer>
+
+    <script>
+      // document.addEventListener("mousemove", function (e) {
+      //   const light = document.querySelector(".cursor-light");
+      //   light.style.left = e.pageX + "px";
+      //   light.style.top = e.pageY + "px";
+      // });
+
+
+    </script>
   </body>
 </html>
