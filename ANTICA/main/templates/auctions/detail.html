@@ -10,7 +10,7 @@
 <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <p>Description: {{ auction.description }}</p>
 <p>Starting Price: {{ auction.starting_price }} BHD</p>
-<p>Current Bid: {{ auction.current_price }} BHD</p>
+<p>Current Bid: <span id="currentBid">{{ auction.current_price }}</span> BHD</p>
 <p>Category: {{ auction.category }}</p>
 
 
@@ -57,4 +57,24 @@
 <button disabled>Auction Ended</button>
 {% endif %}
 {% endif %}
+
 {% endblock %}
+<script>
+const auctionId = {{ auction.id }};
+const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+const auctionSocket = new WebSocket(`${wsScheme}://${window.location.host}/ws/auction/${auctionId}/`);
+
+auctionSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    console.log("Bid update received:", data);
+    document.getElementById("currentBid").innerText = data.bid;
+};
+
+auctionSocket.onopen = function() {
+    console.log("WebSocket connected!");
+};
+
+auctionSocket.onerror = function(err) {
+    console.error("WebSocket error:", err);
+};
+</script>

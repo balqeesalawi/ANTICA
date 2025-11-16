@@ -7,6 +7,8 @@ from .models import Auction, Bid, Profile
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import BidForm
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 # Create your views here.
 
@@ -133,6 +135,16 @@ def add_bid(request, auction_id):
             auction.current_price = new_bid.amount
             auction.save()
             new_bid.save()
+            channel_layer = get_channel_layer()
+
+            async_to_sync(channel_layer.group_send)(
+                f"auction_{auction_id}",      # group name
+                {
+                    "type": "bid_message",  # method name in the consumer
+                    "bid": new_bid.amount,
+                    "bidder": request.user.username,
+                }
+            )
     context = {"form": form, "auction": auction}
     return render(request, "auctions/detail.html", context)
 

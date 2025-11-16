@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "channels",
     "main",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -67,8 +68,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "ANTICA.wsgi.application"
+ASGI_APPLICATION = "ANTICA.asgi.application"
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6380)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
