@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+from datetime import date
+
 
 # Create your models here.
 
@@ -20,23 +23,34 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20)
     image = models.ImageField(upload_to='main/static/uploads/', default="")
     bio = models.TextField(max_length=250)
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=1)
 
     def __str__(self):
         return self.user.username
 
+    def get_absolute_url(self):
+        return reverse("users-profile", kwargs={"profile_id": self.id})
+
 class Auction(models.Model):
-    seller = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=120)
     description = models.TextField(max_length=250)
-    starting_price = models.DecimalField(max_digits=10, decimal_places=2)
-    current_price = models.DecimalField(max_digits=10, decimal_places=2)
+    starting_price = models.DecimalField(max_digits=10, decimal_places=3)
+    current_price = models.DecimalField(max_digits=10, decimal_places=3)
     is_active = models.BooleanField(default=True)
-    end_time = models.DateTimeField()
+    image = models.ImageField(upload_to='main/static/uploads/', default="")
+    date = models.DateField()
     category = models.CharField(max_length=12, choices=CATEGORY, default=CATEGORY[0][0])
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("auctions_detail", kwargs={"auction_id": self.id})
+
+    def auction_for_today(self):
+        return self.date == date.today()
+
 
 
 class Bid(models.Model):
@@ -47,3 +61,8 @@ class Bid(models.Model):
 
     def __str__(self):
         return f"{self.auction.name} for {self.bidder.username}"
+
+    def get_absolute_url(self):
+        return reverse("auctions_detail", kwargs={"auction_id": self.auction.id})
+
+

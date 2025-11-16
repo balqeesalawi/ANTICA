@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1>{{ auction.name }}</h1>
+<p>{{ auction.date }}</p>
+<p>Seller: {{ auction.user.username }}</p>
+{% load static %}
+<img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
+<p>Description: {{ auction.description }}</p>
+<p>Starting Price: {{ auction.starting_price }} BHD</p>
+<p>Current Bid: {{ auction.current_price }} BHD</p>
+<p>Category: {{ auction.category }}</p>
+
+
+{% if auction.user == request.user %}
+{% if message %}
+  <p class="red-text">
+   {{ message }}
+  </p>
+ {% endif %}
+
+<a href="{% url 'auctions_delete' auction.id %}">Delete</a>
+<a href="{% url 'auctions_update' auction.id %}">Stop Auction</a>
+{% else %}
+
+{% if auction.is_active == True %}
+ {% if error_message %}
+  <p class="red-text">
+   {{ error_message }}
+  </p>
+ {% endif %}
+
+
+<div>
+
+  <form action="{% url 'bids_create' auction.id %}" method="post">
+    {% csrf_token %}
+    <input type="number" name="amount" placeholder="" />
+    <button type="submit">Place Bid</button>
+  </form>
+
+
+{% else %}
+{% if winner  %}
+<p>You Are The Winner of this Auction!</p>
+{% else %}
+
+{% if message %}
+  <p class="red-text">
+   {{ message }}
+  </p>
+ {% endif %}
+ {% endif %}
+
+<button disabled>Auction Ended</button>
+{% endif %}
+{% endif %}
+{% endblock %}
