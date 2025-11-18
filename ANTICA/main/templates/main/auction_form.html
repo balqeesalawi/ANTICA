@@ -2,12 +2,14 @@
 
 {% block content %}
 
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <input type="submit" value="Submit" class="btn">
-</form>
+<div>
+  <h1 class="text-2xl font-bold mb-6 text-primary">Submit Form</h1>
+
+  <form method="post" enctype="multipart/form-data" class="space-y-6">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary w-full">Submit</button>
+  </form>
+</div>
 
 {% endblock %}

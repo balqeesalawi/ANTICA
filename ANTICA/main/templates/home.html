@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<body class="bg-home">
+
+
 <!-- Hero Section -->
 <section class="hero" style="text-align: center; ; ">
     <h1 style=" font-size: 100px;">ANTICA</h1>
@@ -19,7 +22,7 @@
 
 <!-- Categories Section -->
 <section class="categories" style="padding: 50px 20px; text-align: center;">
-    <h2 style="font-family: 'Georgia', serif; color: #8b5e3c;">Categories</h2>
+    <h1 style="font-family: 'Georgia', serif; color: #8b5e3c;">Categories</h1>
     <ul style="list-style: none; display: flex; justify-content: center; gap: 25px; padding: 0; margin-top: 20px;">
         <li style="padding: 10px 15px; border: 1px solid #8b5e3c; border-radius: 5px;">Furniture</li>
         <li style="padding: 10px 15px; border: 1px solid #8b5e3c; border-radius: 5px;">Art</li>
@@ -34,6 +37,6 @@
     <h2 style="font-family: 'Georgia', serif; color: #8b5e3c;">Start Bidding Today</h2>
     <a href="{% url 'index' %}" style="display: inline-block; margin-top: 20px; padding: 12px 25px; background-color: #8b5e3c; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Browse Auctions</a>
 </section>
-
+</body>
 {% endblock %}
 
