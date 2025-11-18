@@ -65,7 +65,7 @@
   // Connect to the WebSocket
   const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
   const auctionSocket = new WebSocket(
-    `${wsScheme}://${window.location.host}/ws/auction/${auctionId}/`
+    `ws://127.0.0.1:8000/ws/auction/${auctionId}/`
   );
 
   // Update the current bid element when a message is received
