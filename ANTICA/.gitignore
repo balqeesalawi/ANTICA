@@ -1,5 +1,4 @@
 .env
 __pycache__/
 migrations/
-tailwindcss.exe
-main/static/css/output.css
+
