@@ -10,7 +10,8 @@
 <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <p>Description: {{ auction.description }}</p>
 <p>Starting Price: {{ auction.starting_price }} BHD</p>
-<p>Current Bid: {{ auction.current_price }} BHD</p>
+<p>Current Bid: <span id="currentBid">{{ auction.current_price }}</span> BHD</p>
+  <div id="bidInfo">No bids yet</div>
 <p>Category: {{ auction.category }}</p>
 
 
@@ -57,4 +58,46 @@
 <button disabled>Auction Ended</button>
 {% endif %}
 {% endif %}
+<script>
+  // Get the auction ID from a data attribute or Django variable
+  const auctionId = "{{ auction.id }}";
+
+  // Connect to the WebSocket
+  const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+  const auctionSocket = new WebSocket(
+    `${wsScheme}://${window.location.host}/ws/auction/${auctionId}/`
+  );
+
+  // Update the current bid element when a message is received
+  auctionSocket.onmessage = function(e) {
+      const data = JSON.parse(e.data);
+      const bidAmount = data.bid;         // bid amount sent from consumer
+      const bidder = data.bidder;         // bidder username
+      const currentBidEl = document.getElementById("currentBid");
+
+      currentBidEl.textContent = bidAmount;
+
+      // Optionally, show who made the bid
+      const infoEl = document.getElementById("bidInfo");
+      if(infoEl){
+        infoEl.textContent = `Latest bid: ${bidAmount} BHD by ${bidder}`;
+      }
+  };
+
+  auctionSocket.onclose = function(e) {
+      console.error('WebSocket closed unexpectedly');
+  };
+
+  // Optional: send message via WebSocket when user places a bid
+  // If you want to do this instead of form POST:
+  // const bidForm = document.querySelector("form");
+  // bidForm.addEventListener("submit", function(e){
+  //     e.preventDefault();
+  //     const amount = bidForm.querySelector("input[name='amount']").value;
+  //     auctionSocket.send(JSON.stringify({ amount: amount }));
+  // });
+</script>
+
+
 {% endblock %}
+
