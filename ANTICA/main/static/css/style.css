@@ -1,4 +1,4 @@
-body {
+.bg-home {
   margin: 0;
   padding: 0;
   font-family: "Cinzel", serif;
@@ -15,6 +15,16 @@ body {
   background-position: center;
 }
 
+body {
+   margin: 0;
+  padding: 0;
+  font-family: "Cinzel", serif;
+  color: #ebdfc7;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  background-color: #896f3ecb;
+}
+
 /* ===== NAVBAR ===== */
 nav {
   max-width: 100%;
@@ -23,7 +33,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgb(26, 26, 26); /* خلفية خفيفة شفافة */
+  background: rgb(26, 26, 26);
   backdrop-filter: blur(6px); /* يعطي إحساس فخم */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
@@ -145,9 +155,9 @@ nav button:hover {
 
 .card {
   flex: 1 1 260px;  /* makes them fit 3 per row */
-  max-width: 300px;
-  background: rgb(26, 26, 26);
-  backdrop-filter: blur(6px);
+  max-width: 270px;
+  background: rgba(70, 70, 70, 0.539);
+  backdrop-filter: blur(3px);
   border-radius: 14px;
   padding: 1.5rem;
   text-align: center;
@@ -168,7 +178,6 @@ nav button:hover {
 .card p:first-child {
   font-family: "Cinzel", serif;
   font-weight: 700;
-  background: #8b5e3c;
   padding: 4px 10px;
   border-radius: 3px;
   display: inline-block;
@@ -191,11 +200,10 @@ nav button:hover {
 
 /* Images */
 .card img {
-  width: 100%;
-  height: 250px;
+  width: 90%;
+  height: 150px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+  border-radius: 4px;
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
 }
 
@@ -217,3 +225,22 @@ nav button:hover {
 .card a:hover {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
+
+input {
+  width: 50vw;
+  padding: 12px;
+  border: 1px solid rgba(139, 94, 60, 0.6);
+  background: rgba(235, 223, 199, 0.8);
+  font-family: "Cinzel", serif;
+  border-radius: 4px;
+  color: #3a2a1d;
+  transition: 0.3s ease;
+}
+
+input:focus {
+  background: rgba(235, 223, 199, 1);
+  border-color: #8b5e3c;
+  box-shadow: 0 0 8px rgba(139, 94, 60, 0.4);
+  outline: none;
+}
+
