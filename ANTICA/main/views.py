@@ -141,7 +141,7 @@ def add_bid(request, auction_id):
                 f"auction_{auction_id}",      # group name
                 {
                     "type": "bid_message",  # method name in the consumer
-                    "bid": new_bid.amount,
+                    "bid": float(new_bid.amount),
                     "bidder": request.user.username,
                 }
             )

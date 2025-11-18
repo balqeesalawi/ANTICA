@@ -1,10 +1,10 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
-from main.models import Auction
 
 class AuctionConsumer(AsyncWebsocketConsumer):
     async def connect(self):
+        from main.models import Auction  # move import here
         self.auction_id = self.scope['url_route']['kwargs']['auction_id']
         self.room_group_name = f'auction_{self.auction_id}'
 
@@ -15,7 +15,7 @@ class AuctionConsumer(AsyncWebsocketConsumer):
         )
         await self.accept()
 
-        # Send the current bid immediately to this new client
+        # Send current bid
         auction = await database_sync_to_async(Auction.objects.get)(id=self.auction_id)
         await self.send(text_data=json.dumps({
             'bid': float(auction.current_price),
@@ -23,19 +23,17 @@ class AuctionConsumer(AsyncWebsocketConsumer):
         }))
 
     async def disconnect(self, close_code):
-        # Leave auction group
         await self.channel_layer.group_discard(
             self.room_group_name,
             self.channel_name
         )
 
-    # Receive message from WebSocket
     async def receive(self, text_data):
+        from main.models import Auction  # import here if needed
         data = json.loads(text_data)
         amount = data['amount']
         user = self.scope['user'].username
 
-        # Broadcast to group
         await self.channel_layer.group_send(
             self.room_group_name,
             {
@@ -45,7 +43,6 @@ class AuctionConsumer(AsyncWebsocketConsumer):
             }
         )
 
-    # Receive message from group
     async def bid_message(self, event):
         await self.send(text_data=json.dumps({
             'bid': event['bid'],
