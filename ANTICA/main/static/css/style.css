@@ -1,3 +1,5 @@
+/* home page css */
+
 .bg-home {
   margin: 0;
   padding: 0;
@@ -15,6 +17,124 @@
   background-position: center;
 }
 
+
+/* ============================
+   HERO SECTION
+============================ */
+.hero {
+    text-align: center;
+    padding: 50px 20px ;
+}
+
+.h1-hero {
+  font-size: 7rem;
+    letter-spacing: 5px;
+    color: #e4d2b9;
+    margin: 0;
+    text-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.p-hero {
+  font-size: 2rem;
+    max-width: 700px;
+    margin: 10px auto 30px auto;
+}
+
+.h1-home {
+    font-size: 4rem;
+    letter-spacing: 3px;
+    color: #e4d2b9;
+    text-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.p-home {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 15px auto;
+    line-height: 1.7;
+}
+
+/* ============================
+   ABOUT SECTION
+============================ */
+.about {
+    padding: 70px 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.07);
+    margin-top: 60px;
+    border-top: 1px solid #8b5e3c;
+    border-bottom: 1px solid #8b5e3c;
+}
+
+.h2-home {
+    font-size: 2.5rem;
+    color: #e4d2b9;
+    margin-bottom: 15px;
+}
+
+/* ============================
+   CATEGORIES
+============================ */
+.categories {
+    padding: 70px 15px;
+    text-align: center;
+}
+
+.categories ul li {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #8b5e3c;
+    color: #e4d2b9;
+    font-size: 1.1rem;
+    padding: 12px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.categories ul li:hover {
+    background: #8b5e3c;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* ============================
+   CTA Section
+============================ */
+.cta {
+    padding: 70px 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.07);
+    margin-top: 60px;
+    border-top: 1px solid #8b5e3c;
+    border-bottom: 1px solid #8b5e3c;
+}
+
+.cta .h2-home {
+    font-size: 2.7rem;
+    margin-bottom: 10px;
+}
+
+/* ============================
+   BUTTON STYLE (for both hero + cta)
+============================ */
+a.home-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #8b5e3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+
+}
+
+a.home-btn:hover {
+    background-color: #a07454;
+    transform: scale(1.05);
+}
+
+
 body {
    margin: 0;
   padding: 0;
@@ -22,7 +142,7 @@ body {
   color: #ebdfc7;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
-  background-color: #896f3ecb;
+background-color: #1C1A17;
 }
 
 /* ===== NAVBAR ===== */
@@ -33,8 +153,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgb(26, 26, 26);
-  backdrop-filter: blur(6px); /* يعطي إحساس فخم */
+background-color: #2A2623;
+  backdrop-filter: blur(6px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
@@ -117,6 +237,70 @@ nav button:hover {
   }
 }
 
+/* ============================
+   FOOTER
+============================ */
+.antica-footer {
+    background-color: #2A2623;
+    color: #e4d2b9;
+    padding: 60px 20px 30px;
+    margin-top: 60px;
+    border-top: 1px solid #8b5e3c;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    color: #d9c3a5;
+    margin-bottom: 15px;
+    font-family: "Cinzel", serif;
+    letter-spacing: 1px;
+}
+
+.footer-col p {
+    color: #f4efe9;
+    line-height: 1.6;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #e4d2b9;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: #8b5e3c;
+    padding-left: 4px;
+}
+
+/* Bottom copyright bar */
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #8b5e3c;
+    font-size: 0.9rem;
+    color: #c9baa6;
+}
+
+
 .box-music {
   position: fixed;
   right: 20px;
@@ -144,6 +328,8 @@ nav button:hover {
   transform: scale(0.9);
 }
 
+
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -153,10 +339,12 @@ nav button:hover {
   margin: 0 auto;
 }
 
+
 .card {
-  flex: 1 1 260px;  /* makes them fit 3 per row */
-  max-width: 270px;
-  background: rgba(70, 70, 70, 0.539);
+  flex: 1 1 220px;  /* makes them fit 3 per row */
+  max-width: 220px;
+  max-height: 350px;   /* 👈 make the card shorter */
+  background: #2D2521;
   backdrop-filter: blur(3px);
   border-radius: 14px;
   padding: 1.5rem;

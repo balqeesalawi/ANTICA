@@ -59,9 +59,40 @@
       {% endblock %}
     </main>
 
-    <footer>
-      <div>All Rights Reserved, &copy; 2025 ANTICA &nbsp;</div>
-    </footer>
+    <footer class="antica-footer">
+    <div class="footer-container">
+
+        <!-- About -->
+        <div class="footer-col">
+            <h3>ANTICA</h3>
+            <p>Your trusted marketplace for rare antiques and timeless collectibles.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'index' %}">Auctions</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>Email: support@antica.com</p>
+            <p>Phone: +973 1711 7711</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 ANTICA — All rights reserved.
+    </div>
+</footer>
+
 
     <script>
 

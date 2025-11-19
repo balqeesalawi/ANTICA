@@ -2,16 +2,16 @@
 
 {% block content %}
 
-
+<p id="demo"></p>
 <h1>{{ auction.name }}</h1>
-<p>{{ auction.date }}</p>
+<p>End In : {{auction.date}}</p>
+<h2 id="countdown">Auction Ends In: Loading...</h2>
 <p>Seller: {{ auction.user.username }}</p>
 {% load static %}
 <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
 <p>Description: {{ auction.description }}</p>
 <p>Starting Price: {{ auction.starting_price }} BHD</p>
-<p>Current Bid: <span id="currentBid">{{ auction.current_price }}</span> BHD</p>
-  <div id="bidInfo">No bids yet</div>
+<p>Latest Bid: <span id="currentBid">{{ auction.current_price }}</span> BHD</p>
 <p>Category: {{ auction.category }}</p>
 
 
@@ -23,7 +23,6 @@
  {% endif %}
 
 <a href="{% url 'auctions_delete' auction.id %}">Delete</a>
-<a href="{% url 'auctions_update' auction.id %}">Stop Auction</a>
 {% else %}
 
 {% if auction.is_active == True %}
@@ -44,7 +43,7 @@
 
 
 {% else %}
-{% if winner  %}
+{% if winner == request.user %}
 <p>You Are The Winner of this Auction!</p>
 {% else %}
 
@@ -77,25 +76,45 @@
 
       currentBidEl.textContent = bidAmount;
 
-      // Optionally, show who made the bid
-      const infoEl = document.getElementById("bidInfo");
-      if(infoEl){
-        infoEl.textContent = `Latest bid: ${bidAmount} BHD by ${bidder}`;
-      }
+
   };
 
   auctionSocket.onclose = function(e) {
       console.error('WebSocket closed unexpectedly');
   };
 
-  // Optional: send message via WebSocket when user places a bid
-  // If you want to do this instead of form POST:
-  // const bidForm = document.querySelector("form");
-  // bidForm.addEventListener("submit", function(e){
-  //     e.preventDefault();
-  //     const amount = bidForm.querySelector("input[name='amount']").value;
-  //     auctionSocket.send(JSON.stringify({ amount: amount }));
-  // });
+
+  // Convert input value to a Date object
+  const endTime = new Date("{{ auction.date|date:'c' }}").getTime();
+
+  const countdownEl = document.getElementById('countdown');
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = endTime - now;
+
+    if (diff <= 0) {
+      countdownEl.textContent = "Auction Finished!";
+
+      // Optional: disable bid button if you have one
+      const bidBtn = document.querySelector('button[type="submit"]');
+      if (bidBtn) bidBtn.disabled = true;
+
+      // Optional: notify server via AJAX/WebSocket that auction ended
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  // Update every second
+  setInterval(updateCountdown, 1000);
+  updateCountdown(); // initial call
 </script>
 
 

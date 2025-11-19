@@ -3,34 +3,32 @@
 {% block content %}
 
 
-<h2>Today's Auctions</h2>
-{% if auction.auction_for_today %}
+<h2>Auctions Ending Today</h2>
+
 <div class="card-container">
-
 {% for auction in auctions %}
+    {% if auction.auction_for_today %}
+        <div class="card">
+          {% if auction.is_active %}
+            <p>ONGOING AUCTION</p>
+          {% else %}
+            <p>ENDED AUCTION</p>
+          {% endif %}
 
-<div class="card">
-  {% if auction.is_active == False %}
-  <p>ENDED AUCTION</p>
-  {% else %}
-  <P>ONGOING AUCTION</P>
-  {% endif %}
+          {% load static %}
+          <img width="250px" height="250px" src="{% static auction.image|cut:'main/static/' %}" />
 
-  {% load static %}
+          <h3>{{ auction.name }}</h3>
+          <p>{{ auction.description }}</p>
+          <p>Current Bid: {{ auction.current_price }} BHD</p>
 
-      <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
-  <h3>
-    {{ auction.name }}
-  </h3>
-  <p>{{ auction.description }}</p>
-  <p>Current Bid: {{ auction.current_price }} BHD</p>
-  <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
-</div>
+          <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
+        </div>
+    {% endif %}
+{% empty %}
+    <p>No Auctions Ending Today</p>
 {% endfor %}
 </div>
-{% else %}
-<p>No Auctions From Today</p>
-{% endif %}
 
 
 <h2>All Auctions</h2>
