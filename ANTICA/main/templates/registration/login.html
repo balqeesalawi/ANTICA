@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1 class="h1-signup">Log In</h1>
-  <form action="{% url 'login' %}" method="post" >
+  <form action="{% url 'login' %}" method="post" class="form">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Login">
@@ -10,6 +10,9 @@
 
 <p class="forgot-password">
     <a href="{% url 'password_reset' %}">Forgot Password?</a>
+</p>
+<p class="forgot-password">
+   You Don't have account? <a href="{% url 'signup' %}">Sign Up</a>
 </p>
 
 {% endblock %}

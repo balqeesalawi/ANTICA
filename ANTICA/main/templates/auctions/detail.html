@@ -2,121 +2,102 @@
 
 {% block content %}
 
-<p id="demo"></p>
-<h1>{{ auction.name }}</h1>
-<p>End In : {{auction.date}}</p>
-<h2 id="countdown">Auction Ends In: Loading...</h2>
-<p>Seller: {{ auction.user.username }}</p>
-{% load static %}
-<img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
-<p>Description: {{ auction.description }}</p>
-<p>Starting Price: {{ auction.starting_price }} BHD</p>
-<p>Latest Bid: <span id="currentBid">{{ auction.current_price }}</span> BHD</p>
-<p>Category: {{ auction.category }}</p>
+<div class="detail-page">
+    <p id="demo" class="hidden"></p>
 
+    <h1 class="auction-title">{{ auction.name }}</h1>
+    <h2 id="countdown" class="auction-countdown">Auction Ends In: Loading...</h2>
 
-{% if auction.user == request.user %}
-{% if message %}
-  <p class="red-text">
-   {{ message }}
-  </p>
- {% endif %}
+    <p class="auction-seller"><b>Seller:</b> {{ auction.user.username }}</p>
 
-<a href="{% url 'auctions_delete' auction.id %}">Delete</a>
-{% else %}
+    <div class="auction-main">
+        {% load static %}
+        <img
+            src="{% static auction.image|cut:'main/static/' %}"
+            alt="Auction Image"
+            class="auction-image"
+        />
 
-{% if auction.is_active == True %}
- {% if error_message %}
-  <p class="red-text">
-   {{ error_message }}
-  </p>
- {% endif %}
+        <div class="auction-details">
+            <p class="auction-description"><b>Description:</b> {{ auction.description }}</p>
+            <p class="auction-starting-price"><b>Starting Price:</b> {{ auction.starting_price }} BHD</p>
+            <p class="auction-latest-bid">
+                <b>Latest Bid:</b> <span id="currentBid">{{ auction.current_price }}</span> BHD
+            </p>
+            <p class="auction-category"><b>Category:</b> {{ auction.category }}</p>
 
+            {% if auction.user != request.user %}
+                {% if auction.is_active %}
+                    {% if error_message %}
+                        <p class="auction-error">{{ error_message }}</p>
+                    {% endif %}
 
-<div>
+                     <form action="{% url 'bids_create' auction.id %}" method="post" class="auction-bid-form">
+            {% csrf_token %}
+            <input type="number" name="amount" placeholder="Enter bid" class="auction-input" />
+            <button type="submit" class="auction-button">Place Bid</button>
+        </form>
+                {% else %}
+                    {% if winner == request.user %}
+                        <p class="auction-winner-message">You Are The Winner of this Auction!</p>
+                    {% else %}
+                        {% if message %}
+                            <p class="auction-message">{{ message }}</p>
+                        {% endif %}
+                    {% endif %}
+                    <button class="auction-button-disabled" disabled>Auction Ended</button>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
 
-  <form action="{% url 'bids_create' auction.id %}" method="post">
-    {% csrf_token %}
-    <input type="number" name="amount" placeholder="" />
-    <button type="submit">Place Bid</button>
-  </form>
+    {% if auction.user == request.user %}
+        {% if message %}
+            <p class="auction-message">{{ message }}</p>
+        {% endif %}
+        <a href="{% url 'auctions_delete' auction.id %}" class="auction-delete-link">Delete</a>
+    {% endif %}
+</div>
 
-
-{% else %}
-{% if winner == request.user %}
-<p>You Are The Winner of this Auction!</p>
-{% else %}
-
-{% if message %}
-  <p class="red-text">
-   {{ message }}
-  </p>
- {% endif %}
- {% endif %}
-
-<button disabled>Auction Ended</button>
-{% endif %}
-{% endif %}
 <script>
-  // Get the auction ID from a data attribute or Django variable
-  const auctionId = "{{ auction.id }}";
+    const auctionId = "{{ auction.id }}";
+    const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+    const auctionSocket = new WebSocket(`ws://127.0.0.1:8000/ws/auction/${auctionId}/`);
 
-  // Connect to the WebSocket
-  const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
-  const auctionSocket = new WebSocket(
-    `ws://127.0.0.1:8000/ws/auction/${auctionId}/`
-  );
+    auctionSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const currentBidEl = document.getElementById("currentBid");
+        currentBidEl.textContent = data.bid;
+    };
 
-  // Update the current bid element when a message is received
-  auctionSocket.onmessage = function(e) {
-      const data = JSON.parse(e.data);
-      const bidAmount = data.bid;         // bid amount sent from consumer
-      const bidder = data.bidder;         // bidder username
-      const currentBidEl = document.getElementById("currentBid");
+    auctionSocket.onclose = function(e) {
+        console.error('WebSocket closed unexpectedly');
+    };
 
-      currentBidEl.textContent = bidAmount;
+    const endTime = new Date("{{ auction.date|date:'c' }}").getTime();
+    const countdownEl = document.getElementById('countdown');
 
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = endTime - now;
 
-  };
+        if (diff <= 0) {
+            countdownEl.textContent = "Auction Finished!";
+            const bidBtn = document.querySelector('.auction-button');
+            if (bidBtn) bidBtn.disabled = true;
+            return;
+        }
 
-  auctionSocket.onclose = function(e) {
-      console.error('WebSocket closed unexpectedly');
-  };
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-
-  // Convert input value to a Date object
-  const endTime = new Date("{{ auction.date|date:'c' }}").getTime();
-
-  const countdownEl = document.getElementById('countdown');
-
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const diff = endTime - now;
-
-    if (diff <= 0) {
-      countdownEl.textContent = "Auction Finished!";
-
-      // Optional: disable bid button if you have one
-      const bidBtn = document.querySelector('button[type="submit"]');
-      if (bidBtn) bidBtn.disabled = true;
-
-      // Optional: notify server via AJAX/WebSocket that auction ended
-      return;
+        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  // Update every second
-  setInterval(updateCountdown, 1000);
-  updateCountdown(); // initial call
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 </script>
 
-
 {% endblock %}
-

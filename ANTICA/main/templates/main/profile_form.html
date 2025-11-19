@@ -2,14 +2,18 @@
 
 {% block content %}
 
-<p>Username: {{ user.username }}</p>
+<div class="auction-form-page">
 
-<form action="" method="post" enctype="multipart/form-data">
+<h2 class="h2-home">Edit Profile</h2>
+
+<form action="" method="post" enctype="multipart/form-data" class="form-auction">
   {% csrf_token %}
   <table>
     {{ form.as_table }}
   </table>
-  <input type="submit" value="Submit" class="btn">
+  <div class="submit-area">
+  <input type="submit" value="Submit">
+</div>
 </form>
-
+</div>
 {% endblock %}
