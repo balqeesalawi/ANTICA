@@ -36,10 +36,12 @@
 </section>
 
 <!-- Call-to-Action Section -->
+{% if not user.is_authenticated %}
 <section class="cta">
-    <h2 class="h2-home">Bidding Today</h2>
-    <a href="{% url 'index' %}" class="home-btn">Browse Auctions</a>
+    <h2 class="h2-home">Start Bidding Today</h2>
+    <a href="{% url 'signup' %}" class="home-btn">Join ANTICA</a>
 </section>
+{% endif %}
 </body>
 {% endblock %}
 
