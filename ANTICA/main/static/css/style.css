@@ -412,6 +412,30 @@ form input[type="submit"]:hover {
     transform: scale(1.03);
 }
 
+/* sign in */
+/* Center the link on the page */
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;         /* space from form */
+    font-size: 1rem;
+}
+
+/* Style the link */
+.forgot-password a {
+    color: #e4d2b9;           /* antique gold */
+    text-decoration: none;
+    font-family: "Cinzel", serif;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #a07454;           /* slightly darker gold */
+    text-decoration: underline;
+}
+
+
+
 
 .card-container {
   display: flex;
