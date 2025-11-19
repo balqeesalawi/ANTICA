@@ -17,132 +17,129 @@
   background-position: center;
 }
 
-
 /* ============================
    HERO SECTION
 ============================ */
 .hero {
-    text-align: center;
-    padding: 50px 20px ;
+  text-align: center;
+  padding: 50px 20px;
 }
 
 .h1-hero {
   font-size: 7rem;
-    letter-spacing: 5px;
-    color: #e4d2b9;
-    margin: 0;
-    text-shadow: 0 0 12px rgba(0,0,0,0.4);
+  letter-spacing: 5px;
+  color: #e4d2b9;
+  margin: 0;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 .p-hero {
   font-size: 2rem;
-    max-width: 700px;
-    margin: 10px auto 30px auto;
+  max-width: 700px;
+  margin: 10px auto 30px auto;
 }
 
 .h1-home {
-    font-size: 4rem;
-    letter-spacing: 3px;
-    color: #e4d2b9;
-    text-shadow: 0 0 12px rgba(0,0,0,0.4);
+  font-size: 4rem;
+  letter-spacing: 3px;
+  color: #e4d2b9;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 .p-home {
-    font-size: 1.3rem;
-    max-width: 700px;
-    margin: 15px auto;
-    line-height: 1.7;
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 15px auto;
+  line-height: 1.7;
 }
 
 /* ============================
    ABOUT SECTION
 ============================ */
 .about {
-    padding: 70px 20px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.07);
-    margin-top: 60px;
-    border-top: 1px solid #8b5e3c;
-    border-bottom: 1px solid #8b5e3c;
+  padding: 70px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  margin-top: 60px;
+  border-top: 1px solid #8b5e3c;
+  border-bottom: 1px solid #8b5e3c;
 }
 
 .h2-home {
-    font-size: 2.5rem;
-    color: #e4d2b9;
-    margin-bottom: 15px;
+  font-size: 2.5rem;
+  color: #e4d2b9;
+  margin-bottom: 15px;
 }
 
 /* ============================
    CATEGORIES
 ============================ */
 .categories {
-    padding: 70px 15px;
-    text-align: center;
+  padding: 70px 15px;
+  text-align: center;
 }
 
 .categories ul li {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid #8b5e3c;
-    color: #e4d2b9;
-    font-size: 1.1rem;
-    padding: 12px 18px;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: 0.3s;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #8b5e3c;
+  color: #e4d2b9;
+  font-size: 1.1rem;
+  padding: 12px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .categories ul li:hover {
-    background: #8b5e3c;
-    color: white;
-    transform: translateY(-3px);
+  background: #8b5e3c;
+  color: white;
+  transform: translateY(-3px);
 }
 
 /* ============================
    CTA Section
 ============================ */
 .cta {
-    padding: 70px 20px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.07);
-    margin-top: 60px;
-    border-top: 1px solid #8b5e3c;
-    border-bottom: 1px solid #8b5e3c;
+  padding: 70px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  margin-top: 60px;
+  border-top: 1px solid #8b5e3c;
+  border-bottom: 1px solid #8b5e3c;
 }
 
 .cta .h2-home {
-    font-size: 2.7rem;
-    margin-bottom: 10px;
+  font-size: 2.7rem;
+  margin-bottom: 10px;
 }
 
 /* ============================
    BUTTON STYLE (for both hero + cta)
 ============================ */
 a.home-btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: #8b5e3c;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: 0.3s;
-
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #8b5e3c;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 a.home-btn:hover {
-    background-color: #a07454;
-    transform: scale(1.05);
+  background-color: #a07454;
+  transform: scale(1.05);
 }
 
-
 body {
-   margin: 0;
+  margin: 0;
   padding: 0;
   font-family: "Cinzel", serif;
   color: #ebdfc7;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
-background-color: #1C1A17;
+  background-color: #1c1a17;
 }
 
 /* ===== NAVBAR ===== */
@@ -153,7 +150,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-background-color: #2A2623;
+  background-color: #2a2623;
   backdrop-filter: blur(6px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
@@ -209,8 +206,16 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* زر logout */
-nav button {
+/* Style the logout form in navbar */
+.nav-form {
+  display: inline-block; /* keeps it inline with nav items */
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset and style the logout button */
+.nav-btn {
+  all: unset;
   background: none;
   border: none;
   font-size: 1.05rem;
@@ -218,8 +223,7 @@ nav button {
   color: #6c4c4c;
   font-family: "Playfair Display", serif;
 }
-
-nav button:hover {
+.nav-btn:hover {
   opacity: 0.7;
 }
 
@@ -241,65 +245,64 @@ nav button:hover {
    FOOTER
 ============================ */
 .antica-footer {
-    background-color: #2A2623;
-    color: #e4d2b9;
-    padding: 60px 20px 30px;
-    margin-top: 60px;
-    border-top: 1px solid #8b5e3c;
+  background-color: #2a2623;
+  color: #e4d2b9;
+  padding: 60px 20px 30px;
+  margin-top: 60px;
+  border-top: 1px solid #8b5e3c;
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 .footer-col h3,
 .footer-col h4 {
-    color: #d9c3a5;
-    margin-bottom: 15px;
-    font-family: "Cinzel", serif;
-    letter-spacing: 1px;
+  color: #d9c3a5;
+  margin-bottom: 15px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
 }
 
 .footer-col p {
-    color: #f4efe9;
-    line-height: 1.6;
+  color: #f4efe9;
+  line-height: 1.6;
 }
 
 .footer-col ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .footer-col ul li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .footer-col ul li a {
-    color: #e4d2b9;
-    text-decoration: none;
-    transition: 0.3s;
+  color: #e4d2b9;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 .footer-col ul li a:hover {
-    color: #8b5e3c;
-    padding-left: 4px;
+  color: #8b5e3c;
+  padding-left: 4px;
 }
 
 /* Bottom copyright bar */
 .footer-bottom {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 15px;
-    border-top: 1px solid #8b5e3c;
-    font-size: 0.9rem;
-    color: #c9baa6;
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #8b5e3c;
+  font-size: 0.9rem;
+  color: #c9baa6;
 }
-
 
 .box-music {
   position: fixed;
@@ -331,39 +334,39 @@ nav button:hover {
 /* sign up form page */
 /* Form container */
 form {
-    max-width: 400px;
-    margin: 35px auto;
-    padding: 25px 30px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid #8b5e3c;
-    border-radius: 10px;
-    backdrop-filter: blur(6px);
+  max-width: 400px;
+  margin: 35px auto;
+  padding: 25px 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #8b5e3c;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
 }
 
 /* Form heading */
 .h1-signup {
-    text-align: center;
-    color: #e4d2b9;
-    font-family: "Cinzel", serif;
-    letter-spacing: 2px;
-    margin-bottom: 0px;
-    margin-top: 50px;
+  text-align: center;
+  color: #e4d2b9;
+  font-family: "Cinzel", serif;
+  letter-spacing: 2px;
+  margin-bottom: 0px;
+  margin-top: 50px;
 }
 
 /* Paragraphs generated by {{ form.as_p }} */
 form p {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
 }
 
 /* Labels */
 form label {
-    margin-bottom: 6px;
-    color: #e4d2b9;
-    font-size: 0.95rem;
-    font-family: "Cinzel", serif;
-    letter-spacing: 1px;
+  margin-bottom: 6px;
+  color: #e4d2b9;
+  font-size: 0.95rem;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
 }
 
 /* All input fields */
@@ -374,67 +377,138 @@ form input[type="number"],
 form input[type="file"],
 form select,
 form textarea {
-    width: 90%;
-    padding: 10px 12px;
-    border-radius: 6px;
-    border: 1px solid #8b5e3c;
-    background-color: rgba(255, 255, 255, 0.12);
-    color: white;
-    font-size: 0.95rem;
-    outline: none;
-    transition: 0.3s;
+  width: 90%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #8b5e3c;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s;
 }
 
 /* Input focus */
 form input:focus,
 form select:focus,
 form textarea:focus {
-    border-color: #c9a47a;
-    background-color: rgba(255, 255, 255, 0.18);
+  border-color: #c9a47a;
+  background-color: rgba(255, 255, 255, 0.18);
 }
 
 /* Submit button */
 form input[type="submit"] {
-    width: 50%;
-    display: block;        /* REQUIRED to center */
-    margin: 10px auto;     /* centers it */
-    background-color: #8b5e3c;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 6px;
-    transition: 0.3s;
+  width: 50%;
+  display: block; /* REQUIRED to center */
+  margin: 10px auto; /* centers it */
+  background-color: #8b5e3c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
 }
 
 form input[type="submit"]:hover {
-    background-color: #a07454;
-    transform: scale(1.03);
+  background-color: #a07454;
+  transform: scale(1.03);
 }
 
 /* sign in */
 /* Center the link on the page */
 .forgot-password {
-    text-align: center;
-    margin-top: 20px;         /* space from form */
-    font-size: 1rem;
+  text-align: center;
+  margin-top: 20px; /* space from form */
+  font-size: 1rem;
 }
 
 /* Style the link */
 .forgot-password a {
-    color: #e4d2b9;           /* antique gold */
-    text-decoration: none;
-    font-family: "Cinzel", serif;
-    letter-spacing: 0.5px;
-    transition: 0.3s;
+  color: #e4d2b9; /* antique gold */
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
 }
 
 .forgot-password a:hover {
-    color: #a07454;           /* slightly darker gold */
-    text-decoration: underline;
+  color: #a07454; /* slightly darker gold */
+  text-decoration: underline;
 }
 
+/* profile page */
+.profile-page {
+    display: flex;
+    flex-direction: column;  /* stack elements vertically */
+    align-items: center;     /* horizontal center */
+    justify-content: center; /* vertical center */
+    min-height: 100vh;       /* full viewport height */
+    gap: 20px;               /* space between elements */
+}
+/* Profile Page Heading */
+.profile-heading {
+    font-family: "Cinzel", serif;
+    font-size: 3rem;
+    color: #e4d2b9;
+    letter-spacing: 2px;
+    margin-bottom: 1px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
 
+/* Profile card styling */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.profile-card {
+    background: #2a2623;
+    border-radius: 10px;
+    padding: 30px; /* top padding larger to make space for image */
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    backdrop-filter: blur(6px);
+}
+
+.profile-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #2a2623;
+    display: block;       /* makes margin auto work */
+    margin:20px auto;
+    border: 20px solid #2a2623 ;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    color: #ebdfc7;
+    font-family: "Cinzel", serif;
+    text-align: left;
+}
+
+.edit-profile-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #8b5e3c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.edit-profile-btn:hover {
+    background-color: #a07454;
+    transform: scale(1.03);
+}
 
 
 .card-container {
@@ -446,12 +520,11 @@ form input[type="submit"]:hover {
   margin: 0 auto;
 }
 
-
 .card {
-  flex: 1 1 220px;  /* makes them fit 3 per row */
+  flex: 1 1 220px; /* makes them fit 3 per row */
   max-width: 220px;
-  max-height: 350px;   /* 👈 make the card shorter */
-  background: #2D2521;
+  max-height: 350px; /* 👈 make the card shorter */
+  background: #2d2521;
   backdrop-filter: blur(3px);
   border-radius: 14px;
   padding: 1.5rem;
@@ -520,22 +593,3 @@ form input[type="submit"]:hover {
 .card a:hover {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
-
-input {
-  width: 50vw;
-  padding: 12px;
-  border: 1px solid rgba(139, 94, 60, 0.6);
-  background: rgba(235, 223, 199, 0.8);
-  font-family: "Cinzel", serif;
-  border-radius: 4px;
-  color: #3a2a1d;
-  transition: 0.3s ease;
-}
-
-input:focus {
-  background: rgba(235, 223, 199, 1);
-  border-color: #8b5e3c;
-  box-shadow: 0 0 8px rgba(139, 94, 60, 0.4);
-  outline: none;
-}
-
