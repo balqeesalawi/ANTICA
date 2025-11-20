@@ -48,27 +48,26 @@ Antica is the premier online marketplace for rare and vintage antiques, connecti
 ![image](./images/ERD.png)
 
 ---
-#### [wireframe]()
+#### [wireframe](https://www.figma.com/design/Tl6LHfkZaSaYh8lUoQ2lPu/Untitled?node-id=0-1&t=5WwUtUYYLlQk2UxP-1)
 
 ---
 
-#### [Trello]()
+#### [Trello](https://trello.com/invite/b/691337529b948777f850fbbc/ATTI6ce06c2455dcbc67f35d8cf1d3b867a9EABB2455/antica)
 
 ---
 ### ScreenShots
-![image](./images/welcome.png)
-![image](./images/register.png)
-![image](./images/signin.png)
-![image](./images/home.png)
-![image](./images/jobList.png)
-![image](./images/jobDetails.png)
-![image](./images/addJob.png)
-![image](./images/placeList.png)
-![image](./images/placeDetail.png)
+![image](./images/Home.png)
+![image](./images/Home2.png)
+![image](./images/signup.png)
+![image](./images/login.png)
 ![image](./images/profile.png)
-![image](./images/editProfile.png)
-![image](./images/booking.png)
-![image](./images/complete.png)
+![image](./images/auctions.png)
+![image](./images/auctions2.png)
+![image](./images/auctions3.png)
+![image](./images/auctions4.png)
+![image](./images/auctions5.png)
+![image](./images/auctions6.png)
+
 
 ---
 ### **_Future Updates_**
