@@ -51,7 +51,7 @@
     {{ auction.name }}
   </h3>
   <p>{{ auction.description }}</p>
-  <p>Current Bid: {{ auction.current_price }} BHD</p>
+  <p>Latest Bid: {{ auction.current_price }} BHD</p>
   <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
 </div>
 {% endfor %}

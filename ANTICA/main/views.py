@@ -135,7 +135,7 @@ def add_bid(request, auction_id):
                 return render(request, "auctions/detail.html", context)
 
             if new_bid.amount < auction.current_price + 5:
-                error_message = "The can't bid with less than 5 BD "
+                error_message = "You can't bid with less than 5 BD "
                 context = {
                     "form": form,
                     "error_message": error_message,
@@ -150,9 +150,9 @@ def add_bid(request, auction_id):
             channel_layer = get_channel_layer()
 
             async_to_sync(channel_layer.group_send)(
-                f"auction_{auction_id}",      # group name
+                f"auction_{auction_id}",      
                 {
-                    "type": "bid_message",  # method name in the consumer
+                    "type": "bid_message",
                     "bid": float(new_bid.amount),
                     "bidder": new_bid.bidder.username,
                 }
