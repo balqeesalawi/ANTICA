@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="index-page">
+<a href="{% url 'auctions_create' %}" class="floating-add-btn">
+    +
+</a>
+<h2>Auctions Ending Soon</h2>
 
-
-<h2>Today's Auctions</h2>
-{% if auction.auction_for_today %}
 <div class="card-container">
-
 {% for auction in auctions %}
+    {% if auction.auction_for_today %}
+        <div class="card">
+          {% if auction.is_active %}
+            <p class="on">LIVE AUCTION</p>
+          {% else %}
+            <p class="off">ENDED AUCTION</p>
+          {% endif %}
 
-<div class="card">
-  {% if auction.is_active == False %}
-  <p>ENDED AUCTION</p>
-  {% else %}
-  <P>ONGOING AUCTION</P>
-  {% endif %}
+          {% load static %}
+          <img width="250px" height="250px" src="{% static auction.image|cut:'main/static/' %}" />
 
-  {% load static %}
+          <h3>{{ auction.name }}</h3>
+          <p>{{ auction.description }}</p>
+          <p>Latest Bid: {{ auction.current_price }} BHD</p>
 
-      <img width="250px" height="250px" src={% static auction.image|cut:'main/static/' %} />
-  <h3>
-    {{ auction.name }}
-  </h3>
-  <p>{{ auction.description }}</p>
-  <p>Current Bid: {{ auction.current_price }} BHD</p>
-  <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
-</div>
+          <a href="{% url 'auctions_detail' auction.id %}">Place Bid</a>
+        </div>
+    {% endif %}
+{% empty %}
+    <p>No Auctions Ending Today</p>
 {% endfor %}
 </div>
-{% else %}
-<p>No Auctions From Today</p>
-{% endif %}
+
 
 
 <h2>All Auctions</h2>
@@ -38,9 +39,9 @@
 {% for auction in auctions %}
 <div class="card">
   {% if auction.is_active == False %}
-  <p>ENDED AUCTION</p>
+  <p class="off">ENDED AUCTION</p>
   {% else %}
-  <P>ONGOING AUCTION</P>
+  <P class="on">LIVE AUCTION</P>
   {% endif %}
 
   {% load static %}
@@ -55,5 +56,5 @@
 </div>
 {% endfor %}
 </div>
-<a href="{% url 'auctions_create' %}">Add Auction + </a>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import date
+from django.utils import timezone
 
 
 # Create your models here.
@@ -39,7 +39,7 @@ class Auction(models.Model):
     current_price = models.DecimalField(max_digits=10, decimal_places=3)
     is_active = models.BooleanField(default=True)
     image = models.ImageField(upload_to='main/static/uploads/', default="")
-    date = models.DateField()
+    date = models.DateTimeField()
     category = models.CharField(max_length=12, choices=CATEGORY, default=CATEGORY[0][0])
 
     def __str__(self):
@@ -49,7 +49,9 @@ class Auction(models.Model):
         return reverse("auctions_detail", kwargs={"auction_id": self.id})
 
     def auction_for_today(self):
-        return self.date == date.today()
+        now = timezone.now()
+        diff = self.date - now
+        return diff.total_seconds() <= 86400 and diff.total_seconds() > 0
 
 
 

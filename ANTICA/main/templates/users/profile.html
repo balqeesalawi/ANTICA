@@ -1,14 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Profile Page{% endblock title %}
+
 {% block content %}
-<form action="" method="post">
-  {% csrf_token %}
-  {% load static %}
-  <img width="250px" height="250px" src={% static profile.image|cut:'main/static/' %} />
-  <p>Username: {{ user.username }}</p>
-  <p>Email: {{ profile.email }}</p>
-  <p>Phone Number: {{ profile.phone }}</p>
-  <p>Bio: {{ profile.bio }}</p>
-</form>
-<a href="{% url 'profile_update' profile.id %}"> Edit Profile</a>
+<div class="profile-page">
+    <h3 class="profile-heading">My Profile</h3>
+
+    <div class="profile-container">
+        {% load static %}
+        <div class="profile-image-wrapper">
+            <img class="profile-image" src="{% static profile.image|cut:'main/static/' %}" alt="Profile Picture">
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-info">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ profile.email }}</p>
+                <p><strong>Phone Number:</strong> {{ profile.phone }}</p>
+                <p><strong>Bio:</strong> {{ profile.bio }}</p>
+            </div>
+
+            <a class="edit-profile-btn" href="{% url 'profile_update' profile.id %}">Edit Profile</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

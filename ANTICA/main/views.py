@@ -9,6 +9,8 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import BidForm
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from django import forms
+from datetime import datetime
 
 # Create your views here.
 
@@ -59,6 +61,8 @@ def auctions_detail(request, auction_id):
     auction = Auction.objects.get(id=auction_id)
     bids = Bid.objects.filter(auction= auction)
 
+    now = datetime.now()
+    Auction.objects.filter(date__lte=now, is_active=True).update(is_active=False)
 
     if auction.is_active == False:
         for bid in bids:
@@ -84,11 +88,17 @@ class AuctionCreate(LoginRequiredMixin, CreateView):
         "category",
     ]
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        # Override the widget for the 'date' field
+        form.fields['date'].widget = forms.DateTimeInput(attrs={'type': 'datetime-local'})
+        return form
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-    
+
 
 
 class AuctionUpdate(LoginRequiredMixin, UpdateView):
@@ -144,7 +154,7 @@ def add_bid(request, auction_id):
                 {
                     "type": "bid_message",  # method name in the consumer
                     "bid": float(new_bid.amount),
-                    "bidder": request.user.username,
+                    "bidder": new_bid.bidder.username,
                 }
             )
     context = {"form": form, "auction": auction}

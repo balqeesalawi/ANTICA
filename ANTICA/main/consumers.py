@@ -29,7 +29,6 @@ class AuctionConsumer(AsyncWebsocketConsumer):
         )
 
     async def receive(self, text_data):
-        from main.models import Auction  # import here if needed
         data = json.loads(text_data)
         amount = data['amount']
         user = self.scope['user'].username

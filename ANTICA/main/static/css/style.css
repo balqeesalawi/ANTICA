@@ -1,3 +1,5 @@
+/* home page css */
+
 .bg-home {
   margin: 0;
   padding: 0;
@@ -15,14 +17,129 @@
   background-position: center;
 }
 
+/* ============================
+   HERO SECTION
+============================ */
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.h1-hero {
+  font-size: 7rem;
+  letter-spacing: 5px;
+  color: #e4d2b9;
+  margin: 0;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.p-hero {
+  font-size: 2rem;
+  max-width: 700px;
+  margin: 10px auto 30px auto;
+}
+
+.h1-home {
+  font-size: 4rem;
+  letter-spacing: 3px;
+  color: #e4d2b9;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.p-home {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 15px auto;
+  line-height: 1.7;
+}
+
+/* ============================
+   ABOUT SECTION
+============================ */
+.about {
+  padding: 70px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  margin-top: 60px;
+  border-top: 1px solid #8b5e3c;
+  border-bottom: 1px solid #8b5e3c;
+}
+
+.h2-home {
+  font-size: 2.5rem;
+  color: #e4d2b9;
+  margin-bottom: 15px;
+}
+
+/* ============================
+   CATEGORIES
+============================ */
+.categories {
+  padding: 70px 15px;
+  text-align: center;
+}
+
+.categories ul li {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #8b5e3c;
+  color: #e4d2b9;
+  font-size: 1.1rem;
+  padding: 12px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.categories ul li:hover {
+  background: #8b5e3c;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* ============================
+   CTA Section
+============================ */
+.cta {
+  padding: 70px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.07);
+  margin-top: 60px;
+  border-top: 1px solid #8b5e3c;
+  border-bottom: 1px solid #8b5e3c;
+}
+
+.cta .h2-home {
+  font-size: 2.7rem;
+  margin-bottom: 10px;
+}
+
+/* ============================
+   BUTTON STYLE (for both hero + cta)
+============================ */
+a.home-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #8b5e3c;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+a.home-btn:hover {
+  background-color: #a07454;
+  transform: scale(1.05);
+}
+
 body {
-   margin: 0;
+  margin: 0;
   padding: 0;
   font-family: "Cinzel", serif;
   color: #ebdfc7;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
-  background-color: #896f3ecb;
+  background-color: #1c1a17;
 }
 
 /* ===== NAVBAR ===== */
@@ -33,8 +150,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgb(26, 26, 26);
-  backdrop-filter: blur(6px); /* يعطي إحساس فخم */
+  background-color: #2a2623;
+  backdrop-filter: blur(6px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
@@ -89,17 +206,24 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* زر logout */
-nav button {
-  background: none;
-  border: none;
+/* Style the logout form in navbar */
+.nav-form {
+  display: inline-block; /* keeps it inline with nav items */
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset and style the logout button */
+.nav-btn {
+  all: unset;
+  /* background: none; */
+  /* border: none; */
   font-size: 1.05rem;
   cursor: pointer;
   color: #6c4c4c;
   font-family: "Playfair Display", serif;
 }
-
-nav button:hover {
+.nav-btn:hover {
   opacity: 0.7;
 }
 
@@ -115,6 +239,69 @@ nav button:hover {
     flex-direction: column;
     gap: 1rem;
   }
+}
+
+/* ============================
+   FOOTER
+============================ */
+.antica-footer {
+  background-color: #2a2623;
+  color: #e4d2b9;
+  padding: 60px 20px 30px;
+  margin-top: 60px;
+  border-top: 1px solid #8b5e3c;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-col h3,
+.footer-col h4 {
+  color: #d9c3a5;
+  margin-bottom: 15px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
+}
+
+.footer-col p {
+  color: #f4efe9;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: #e4d2b9;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #8b5e3c;
+  padding-left: 4px;
+}
+
+/* Bottom copyright bar */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #8b5e3c;
+  font-size: 0.9rem;
+  color: #c9baa6;
 }
 
 .box-music {
@@ -144,103 +331,879 @@ nav button:hover {
   transform: scale(0.9);
 }
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  max-width: 1200px; /* keeps rows tidy */
-  margin: 0 auto;
+/* sign up form page */
+/* Form container */
+.form {
+  max-width: 400px;
+  margin: 35px auto;
+  padding: 25px 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #8b5e3c;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
 }
 
-.card {
-  flex: 1 1 260px;  /* makes them fit 3 per row */
-  max-width: 270px;
-  background: rgba(70, 70, 70, 0.539);
-  backdrop-filter: blur(3px);
-  border-radius: 14px;
-  padding: 1.5rem;
+/* Form heading */
+.h1-signup {
   text-align: center;
+  color: #e4d2b9;
   font-family: "Cinzel", serif;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25),
-    inset 0 0 10px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  letter-spacing: 2px;
+  margin-bottom: 0px;
+  margin-top: 50px;
 }
 
-/* Hover effect */
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+/* Paragraphs generated by {{ form.as_p }} */
+.form p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
 }
 
 /* Labels */
-.card p:first-child {
-  font-family: "Cinzel", serif;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 3px;
-  display: inline-block;
-  font-size: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-/* Title */
-.card h3 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
-
-/* Description */
-.card p {
+.form label {
+  margin-bottom: 6px;
+  color: #e4d2b9;
   font-size: 0.95rem;
-  line-height: 1.5;
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
 }
 
-/* Images */
-.card img {
+/* All input fields */
+.form input[type="text"],
+.form input[type="password"],
+.form input[type="email"],
+.form input[type="number"],
+.form input[type="file"],
+.form select,
+.form textarea {
   width: 90%;
-  height: 150px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #8b5e3c;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+/* Input focus */
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: #c9a47a;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Submit button */
+.form input[type="submit"] {
+  width: 50%;
+  display: block; /* REQUIRED to center */
+  margin: 10px auto; /* centers it */
+  background-color: #8b5e3c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #a07454;
+  transform: scale(1.03);
+}
+
+/* sign in */
+/* Center the link on the page */
+.forgot-password {
+  text-align: center;
+  margin-top: 20px; /* space from form */
+  font-size: 1rem;
+}
+
+/* Style the link */
+.forgot-password a {
+  color: #e4d2b9; /* antique gold */
+  text-decoration: none;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+
+.forgot-password a:hover {
+  color: #a07454; /* slightly darker gold */
+  text-decoration: underline;
+}
+
+/* Profile page wrapper */
+.profile-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: "Cinzel", serif;
+    color: #ebdfc7;
+}
+
+/* Heading */
+.profile-heading {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #8b5e3c;
+    padding-bottom: 8px;
+}
+
+/* Profile container */
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    background-color: #2d2521;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* Profile image */
+.profile-image-wrapper {
+    flex: 1 1 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #8b5e3c;
+    background-color: #3a2f27;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Profile card */
+.profile-card {
+    flex: 2 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgba(45, 37, 33, 0.8);
+    border-radius: 12px;
+}
+
+/* Profile info */
+.profile-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.profile-info strong {
+    color: #d8c7a9;
+}
+
+/* Edit profile button */
+.edit-profile-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ebdfc7;
+    background-color: #8b5e3c;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.edit-profile-btn:hover {
+    background-color: #a8734e;
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card {
+        width: 100%;
+    }
+}
+
+
+/* Card container and cards to fit 5 per row */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* keep center alignment of rows */
+  gap: 15px;
+  max-width: 1200px; /* increase max width to fit 5 cards nicely */
+  margin: 1.5rem auto;
+  padding: 0 0.5rem;
+}
+
+.card {
+  flex: 1 1 180px; /* base width */
+  max-width: 180px;
+  min-height: 340px;
+  background: #2a2623;
+  backdrop-filter: blur(3px);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  font-family: "Cinzel", serif;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 0 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes button to bottom */
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.on {
+  font-weight: 700;
+
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  color: rgb(60, 96, 60);
+}
+
+.off {
+  font-weight: 700;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  color: #752525;
+}
+
+
+
+.card h3 {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+}
+
+.card p:not(:first-child) {
+  font-size: 0.85rem;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+
+}
+
+.card img {
+  width: 100%;
+  height: 120px;
   object-fit: cover;
   border-radius: 4px;
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.6rem;
+  flex-shrink: 0; /* ensures image doesn't shrink */
 }
 
-/* Buttons */
 .card a {
   display: inline-block;
   background: #8b5e3c;
   color: #ebdfc7;
-  padding: 0.6rem 1.2rem;
-  border-radius: 3px;
-  margin-top: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
   font-weight: 600;
+  font-size: 0.8rem;
   text-decoration: none;
   transition: 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  margin-top: auto; /* pushes button to bottom */
 }
 
-/* Button hover */
 .card a:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-input {
-  width: 50vw;
-  padding: 12px;
-  border: 1px solid rgba(139, 94, 60, 0.6);
-  background: rgba(235, 223, 199, 0.8);
-  font-family: "Cinzel", serif;
-  border-radius: 4px;
-  color: #3a2a1d;
-  transition: 0.3s ease;
+/* detail page */
+/* Detail Page Container */
+.detail-page {
+    font-family: "Cinzel", serif;
+    background-color: #1c1815;
+    color: #ebdfc7;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-input:focus {
-  background: rgba(235, 223, 199, 1);
-  border-color: #8b5e3c;
-  box-shadow: 0 0 8px rgba(139, 94, 60, 0.4);
-  outline: none;
+/* Auction Title */
+.auction-title {
+    font-size: 2rem;
+    color: #f5e8d3;
+    text-align: left;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #8b5e3c;
+    padding-bottom: 0.3rem;
 }
+
+/* Countdown */
+.auction-countdown {
+    font-size: 1.2rem;
+    color: #f0c75e;
+    text-align: left;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Seller Info */
+.auction-seller {
+    font-size: 1rem;
+    color: #cfc1a5;
+    text-align: left;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 1rem;
+}
+
+/* Container for image + info side by side */
+.auction-main {
+    display: flex;
+    flex-direction: column; /* stacked on mobile */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 900px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media(min-width: 768px) {
+    .auction-main {
+        flex-direction: row; /* side-by-side on larger screens */
+        align-items: flex-start;
+    }
+}
+
+/* Auction Image */
+.auction-image {
+    width: 200px;  /* smaller image */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+}
+
+/* Auction Details Container */
+.auction-details {
+    background-color: #2d2521;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    flex: 1; /* take remaining space next to image */
+}
+
+.auction-details p {
+    margin: 0.6rem 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+/* Messages */
+.auction-message, .auction-winner-message, .auction-error {
+    max-width: 600px;
+    margin: 0.8rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.auction-error {
+    background-color: #4d0000;
+    color: #ffb3b3;
+}
+
+.auction-message {
+    background-color: #3a2a1c;
+    color: #f5e8d3;
+}
+
+.auction-winner-message {
+    background-color: #3a2a1c;
+    color: #f0c75e;
+}
+
+/* Delete Link */
+.auction-delete-link {
+    display: inline-block;
+    margin: 0.5rem 0;
+    color: #f0c75e;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.auction-delete-link:hover {
+    color: #ebdfc7;
+}
+
+
+/* Bid Form */
+.auction-bid-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media(min-width: 600px) {
+    .auction-bid-form {
+        flex-direction: row;
+    }
+}
+
+/* Input */
+.auction-input {
+    padding: 0.6rem 0.8rem;
+    color: #ebdfc7;
+    flex: 1;
+    font-size: 1rem;
+}
+
+/* Button */
+.auction-button {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background-color: #8b5e3c;
+    color: #ebdfc7;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auction-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Disabled Button */
+.auction-button-disabled {
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background-color: #5a4b3f;
+    color: #ebdfc7;
+    font-weight: 600;
+    border: none;
+    cursor: not-allowed;
+}
+
+/* Utility */
+.hidden {
+    display: none;
+}
+
+/* auction form  */
+/* Scrollable form container */
+.form-auction {
+    max-width: 780px;
+    width: 92%;
+    margin: 24px auto;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    color: #FFF;
+    font-family: "Cinzel", serif;
+    box-sizing: border-box;
+
+    /* Make the form itself scrollable */
+    max-height: 75vh;        /* fits on screen but allows internal scroll */
+    overflow-y: auto;
+    position: relative;      /* for sticky footer inside */
+    padding-bottom: 80px;    /* space for sticky submit area */
+}
+
+/* Make paragraphs (from form.as_p) stack neatly */
+.form-auction p {
+    margin: 8px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.form-auction label {
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #e6d8bf;
+}
+
+/* Inputs, selects, textarea */
+.form-auction input,
+.form-auction select,
+.form-auction textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #8b5e3c;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Description textarea height */
+.form-auction textarea {
+    min-height: 100px;
+    max-height: 220px;
+    resize: vertical;
+}
+
+/* Sticky submit area: keeps submit button visible */
+.form-auction .submit-area {
+    position: sticky;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 8px 12px;
+    background: linear-gradient(180deg, rgba(45,37,33,0) 0%, rgba(45,37,33,0.95) 80%);
+    pointer-events: none; /* allow clicks only on the button */
+}
+
+/* The submit button itself (enabled to receive clicks) */
+.form-auction .submit-area input[type="submit"] {
+    pointer-events: auto;
+    background: #8b5e3c;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 360px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.12s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Hover for submit */
+.form-auction .submit-area input[type="submit"]:hover {
+    background: #a8734e;
+    transform: translateY(-2px);
+}
+
+/* Optional: make file input look better (image) */
+.form-auction input[type="file"] {
+    padding: 6px 8px;
+}
+
+/* Simple custom scrollbar for modern browsers */
+.form-auction::-webkit-scrollbar {
+    width: 10px;
+}
+
+.form-auction::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.12);
+    border-radius: 10px;
+}
+
+.form-auction::-webkit-scrollbar-thumb {
+    background: rgba(139,94,60,0.6);
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.12);
+}
+
+.auction-form-page {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Mobile: allow full height usage and remove sticky background artifact */
+@media (max-width: 700px) {
+    .form-auction {
+        max-height: 84vh;
+        padding-bottom: 100px;
+    }
+    .form-auction .submit-area {
+        bottom: 8px;
+        background: linear-gradient(180deg, rgba(45,37,33,0) 0%, rgba(45,37,33,0.98) 85%);
+    }
+}
+
+
+.floating-add-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px; /* moved from right to left */
+    width: 60px;
+    height: 60px;
+    background: #8b5e3c;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    transition: 0.3s ease;
+    z-index: 9999;
+}
+
+.floating-add-btn:hover {
+    background: #a8734e;
+    transform: scale(1.1);
+}
+
+.index-page {
+  margin-top: 40px;
+}
+.index-page h2 {
+  margin-left: 16px;
+}
+
+/* about page */
+/* Page wrapper */
+.about-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: "Cinzel", serif;
+    color: #ebdfc7;
+    line-height: 1.6;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    padding: 30px 40px;
+}
+
+/* Main heading */
+.about-page h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #8b5e3c;
+    padding-bottom: 8px;
+}
+
+/* Subheadings */
+.about-page h3 {
+    font-size: 1.4rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #f0e6d2;
+}
+
+/* Paragraphs */
+.about-page p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* Lists */
+.about-page ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.about-page ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Add custom bullet */
+.about-page ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #8b5e3c;
+    font-weight: bold;
+}
+
+/* Highlight important text */
+.about-page strong {
+    color: #d8c7a9;
+}
+
+/* Optional: add vintage card style sections for each heading */
+.about-page section {
+    background: rgba(45, 37, 33, 0.6);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .about-page {
+        padding: 20px;
+    }
+
+    .about-page h2 {
+        font-size: 1.7rem;
+    }
+
+    .about-page h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Page wrapper */
+.end-bid-page {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px 25px;
+    background: #2d2521;
+    color: #ebdfc7;
+    font-family: "Cinzel", serif;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+/* Heading */
+.end-bid-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #8b5e3c;
+    padding-bottom: 8px;
+}
+
+/* Warning text */
+.end-bid-warning {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.bid-item {
+    font-weight: 700;
+    color: #d8c7a9;
+}
+
+/* Form styling */
+.end-bid-form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn-confirm {
+    background-color: #8b5e3c;
+    color: #ebdfc7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-confirm:hover {
+    background-color: #a8734e;
+    transform: scale(1.05);
+}
+
+.btn-cancel {
+    background-color: #c0392b;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-cancel:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .end-bid-form {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Bid form container */
+.auction-bid-form {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Input field */
+.auction-input {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #8b5e3c;
+    background-color: #3a2f27;
+    color: #ebdfc7;
+    width: 150px;
+    transition: all 0.3s ease;
+}
+
+.auction-input::placeholder {
+    color: #d8c7a9;
+}
+
+.auction-input:focus {
+    outline: none;
+    border-color: #d8c7a9;
+    box-shadow: 0 0 8px rgba(216,199,169,0.5);
+}
+
+/* Submit button */
+.auction-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #8b5e3c;
+    color: #ebdfc7;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.auction-button:hover {
+    background-color: #a8734e;
+    transform: scale(1.05);
+}
+
+/* Error message */
+.auction-error {
+    color: #e74c3c;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
